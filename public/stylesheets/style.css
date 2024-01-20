@@ -1,8 +1,94 @@
 body {
-  padding: 50px;
+  
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color:#3d4146;
 }
 
+.outside-container {
+  padding: 50px;
+}
 a {
   color: #00B7FF;
 }
+
+#sign_in_button {
+  align-items: center;
+  background-color: #1DB954;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 300px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+#sign_in_button:hover,
+#sign_in_button:focus { 
+  background-color: #1dad4f;
+  color: #ffffff;
+}
+
+#sign_in_button:active {
+  background: #189945;
+  color: rgb(255, 255, 255, .7);
+}
+
+#sign_in_button:disabled { 
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, .08);
+  color: rgba(0, 0, 0, .3);
+}
+
+.fade-in-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out; /* Optional: Add a smooth transition effect */
+}
+
+    /* Custom styling for the navigation bar */
+    .navbar {
+      background-color: #1DB954; /* Set your desired background color */
+    }
+
+    .navbar-brand,
+    .nav-link {
+      color: #1DB954 !important; /* Set your desired text color */
+    }
+
+    .navbar-brand:hover,
+    .nav-link:hover {
+      color: #ecf0f1 !important; /* Set your desired text color on hover */
+    }
+
+    .navbar-toggler-icon {
+      background-color: #ffffff; /* Set your desired color for the toggler icon */
+    }
+
+    .attractive-textbox {
+      border: 2px solid #1DB954; /* Set border color */
+      border-radius: 8px; /* Set border radius for rounded corners */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+      background-color: #f8f9fa; /* Set background color */
+      color: #495057; /* Set text color */
+    }
+
+    .text-center {
+      color: #1DB954; /* Set your desired color (e.g., red) */
+    }
