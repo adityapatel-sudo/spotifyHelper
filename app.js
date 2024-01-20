@@ -19,11 +19,6 @@ app.get('/dashboard', (req, res) => {
     res.sendFile(path.join(__dirname+'/public/dashboard.html'), { title: 'MyCadence' });
 });
 app.get('/authorizeSpotify', (req, res) => {
-    const hashFragment = req.url.split('#')[1];
-    const queryString = require('querystring');
-    const decodedData = queryString.parse(hashFragment);
-    console.log(decodedData);
-    console.log(req.originalUrl)
     res.sendFile(path.join(__dirname+'/public/dashboard.html'));
 });
 module.exports = app;
