@@ -94,6 +94,8 @@ let speechiness = document.getElementById("speechiness")
 let tempo = document.getElementById("tempo")
 let valence = document.getElementById("valence")
 
+let topPlaylistData
+
 function searchSong() {
     console.log("in search song")
     var songInput = document.getElementById("songInput");
@@ -162,3 +164,38 @@ function updateSong(song) {
     })
 }
 
+/**
+ * gets users top songs in timeframe and creates playlist with the songs
+ *
+ */
+function createPlaylist() {
+    var select_playlist_length = document.getElementById("select_playlists")
+    var length;
+    switch (select_playlist_length.selectedIndex) {
+        case 0:
+           length = "short_term"
+           break;
+        case 1:
+            length = "medium_term"
+            break;
+        case 2:
+            length = "long_term"
+            break
+    }
+    console.log(length)
+    let type = "tracks"
+    var createPlaylistURL = 'https://api.spotify.com/v1/me/top/tracks';
+    createPlaylistURL += '?time_range=' + encodeURIComponent(length);
+    createPlaylistURL += '&limit=50';
+    console.log(createPlaylistURL)
+
+    fetch(createPlaylistURL, {
+        method:"GET",
+        headers: headers
+    }).then(response => {
+        response.json().then(data => {
+            topPlaylistData = data
+            console.log(topPlaylistData)
+        })
+    })
+}

@@ -3,7 +3,7 @@
 
 var client_id = '3b69f31f92be469e9dae0c7ab96856c9';
 var redirect_uri = 'https://www.mycadences.com/authorizeSpotify'
-//var redirect_uri = 'http://localhost:3000/authorizeSpotify';
+var redirect_uri = 'http://localhost:3000/authorizeSpotify';
 
 function generateRandomString(length) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -20,7 +20,7 @@ localStorage.setItem(stateKey, state);
 var scope = 'user-read-private user-read-email ' +
     'playlist-read-private playlist-read-collaborative ' +
     'playlist-modify-private playlist-modify-public ' +
-    'user-library-modify user-library-read';
+    'user-library-modify user-library-read user-top-read';
 
 var url = 'https://accounts.spotify.com/authorize';
 url += '?response_type=token';

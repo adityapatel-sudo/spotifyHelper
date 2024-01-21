@@ -44,13 +44,13 @@
         <div class="form-group d-flex justify-content-center">
             <label for="select_playlists" class="mr-2" style="margin-right: 20px; padding-top: 5px;">Select Timeframe:</label>
             <select class="form-control" id="select_playlists" style="max-width: 200px;">
-                <option value="option1">4 Weeks</option>
-                <option value="option2">6 months</option>
-                <option value="option3">Lifetime</option>
+                <option value="short_term">4 Weeks</option>
+                <option value="medium_term">6 months</option>
+                <option value="long_term">Lifetime</option>
             </select>
         </div>
         
-        <button id="sign_in_button" style="margin-top: 20px;">Create Playlist</button>
+        <button onclick="createPlaylist()" id="create_playlist_top_songs" class="push_button" style="margin-top: 20px;">Create Playlist</button>
         </div>
     </div>
     <div id="song_content" style="display: none;"class="col-md-9">
