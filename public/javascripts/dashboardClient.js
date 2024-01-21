@@ -70,9 +70,21 @@ function toggleTemp() {
 var searchResult
 var firstSearch
 var songData
+var songAcousticData
 var songNameText = document.getElementById("song_name")
 var albumNameText = document.getElementById("album_name")
 var songPicture = document.getElementById("album_picture")
+
+//song acoustic info docs:
+let acousticness = document.getElementById("acousticness")
+let dancability = document.getElementById("dancability")
+let energy = document.getElementById("energy")
+let instrumentalness = document.getElementById("instrumentalness")
+let loudness = document.getElementById("loudness")
+let speechiness = document.getElementById("speechiness")
+let tempo = document.getElementById("tempo")
+let valence = document.getElementById("valence")
+
 function searchSong() {
     console.log("in search song")
     var songInput = document.getElementById("songInput");
@@ -104,8 +116,8 @@ function updateSong(song) {
         }).then(result => {
             result.json().then(data => {
                 songData = data;
-                songNameText.innerText = songData.name
-                albumNameText.innerText = songData.album.name
+                songNameText.innerText = "Song Name: " +songData.name
+                albumNameText.innerText = "Album Name: "+ songData.album.name
                 let imagesArray = songData.album.images
                 let chosenIndex = -1;
                 let distanceFrom300 = 1000000
@@ -118,6 +130,26 @@ function updateSong(song) {
                 songPicture.src = imagesArray[chosenIndex].url
                 console.log(songData)
             })
+    })
+    // get acoustic data
+    const acousticUrl = "https://api.spotify.com/v1/audio-features/" + song.id
+    fetch(acousticUrl,{
+        method:"GET",
+        headers: headers
+    }).then(response => {
+        response.json().then(data => {
+            songAcousticData = data
+            acousticness.innerText = data.acousticness
+            dancability.innerText = data.danceability
+            energy.innerText = data.energy
+            instrumentalness.innerText = data.instrumentalness
+            loudness.innerText = data.loudness
+            speechiness.innerText = data.speechiness
+            tempo.innerText = data.tempo
+            valence.innerText = data.valence
+
+            console.log(songAcousticData)
+        })
     })
 }
 
