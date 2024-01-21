@@ -35,15 +35,7 @@ fetch(userIDUrl,{
             const textWelcome = document.getElementById("text_welcome")
             textWelcome.innerText = "Welcome " + displayName
 
-            var playListsUrlFinal = playlistsUrl + userID + playlistsUrl2
-            fetch(playListsUrlFinal, {
-                method: 'GET',
-                headers: headers
-            }).then(result => {
-                result.json().then(data => {
-                    console.log(data)
-                })
-            })
+
         })
     }).catch(error => {
         console.error('Error:', error);
@@ -139,14 +131,14 @@ function updateSong(song) {
     }).then(response => {
         response.json().then(data => {
             songAcousticData = data
-            acousticness.innerText = data.acousticness
-            dancability.innerText = data.danceability
-            energy.innerText = data.energy
-            instrumentalness.innerText = data.instrumentalness
-            loudness.innerText = data.loudness
-            speechiness.innerText = data.speechiness
-            tempo.innerText = data.tempo
-            valence.innerText = data.valence
+            acousticness.innerText = "Acousticness: " + data.acousticness
+            dancability.innerText = "Danceability: " + data.danceability
+            energy.innerText = "Energy: "+ data.energy
+            instrumentalness.innerText = "Instrumentalness: "+ data.instrumentalness
+            loudness.innerText = "Loudness: "+ data.loudness
+            speechiness.innerText = "Speechiness: "+data.speechiness
+            tempo.innerText = "Tempo: " + data.tempo
+            valence.innerText = "Valence: " + data.valence
 
             console.log(songAcousticData)
         })
