@@ -170,9 +170,6 @@ function updateSong(song) {
     })
 }
 function updateProgressBar() {
-
-   
-
     // Update the width of the progress bar
     var acoustic = document.getElementById('acousticness');
     var loud = document.getElementById('loudness');
@@ -214,7 +211,7 @@ function updateProgressBar() {
  * gets users top songs in timeframe and creates playlist with the songs
  *
  */
-function createPlaylist() {
+async function createPlaylist(createNewPlaylist) {
     disableButton("create_playlist_top_songs")
     var select_playlist_length = document.getElementById("select_playlists")
     var length;
@@ -255,19 +252,21 @@ function createPlaylist() {
                 name: "Top Songs "+formattedDate,
                 description: "Playlist created by MyCadence. Includes Top songs from "+length
             }
-            fetch(createPlaylistURL, {
-                method: "POST",
-                headers: headers,
-                body: JSON.stringify(playlistBody)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    newPlaylistID = data.id
-                    newPlaylistURL = data.external_urls.spotify
-                    console.log(data)
-                    console.log(newPlaylistID)
-                    addSongs()
+            if (createNewPlaylist === true){
+                fetch(createPlaylistURL, {
+                    method: "POST",
+                    headers: headers,
+                    body: JSON.stringify(playlistBody)
                 })
+                    .then(response => response.json())
+                    .then(data => {
+                        newPlaylistID = data.id
+                        newPlaylistURL = data.external_urls.spotify
+                        console.log(data)
+                        console.log(newPlaylistID)
+                        addSongs()
+                    })
+            }
         })
     })
 }
@@ -330,10 +329,70 @@ function showNotification(message) {
 
 
 async function getInfo() {
-    const completion = await ({
-
-        model: "gpt-3.5-turbo",
-    });
-
-    console.log(completion.choices[0]);
+    // var length = "medium-term";
+    // console.log(length)
+    // var getTopTracksURL = 'https://api.spotify.com/v1/me/top/tracks';
+    // getTopTracksURL += '?time_range=' + encodeURIComponent(length);
+    // getTopTracksURL += '&limit=50';
+    // console.log(getTopTracksURL)
+    //
+    // fetch(getTopTracksURL, {
+    //     method:"GET",
+    //     headers: headers
+    // }).then(response => {
+    //     response.json().then(data => {
+    //         topPlaylistData = data
+    //         console.log("chatgpt")
+    //         console.log(topPlaylistData)
+    //
+    //     })
+    // })
+    // createPlaylist(false).then(data => {
+    //     console.log(topPlaylistData)
+    //
+    //     var acous = 0;
+    //     var danca = 0;
+    //     var energ = 0;
+    //     var instr = 0;
+    //     var loudn = 0;
+    //     var speec = 0;
+    //     var temp = 0;
+    //     var valen = 0;
+    //     for (let i = 0; i < 5; i++) {
+    //         // get acoustic data
+    //         const acousticUrl = "https://api.spotify.com/v1/audio-features/" + topPlaylistData.items[i].id
+    //         fetch(acousticUrl,{
+    //             method:"GET",
+    //             headers: headers
+    //         }).then(response => {
+    //             response.json().then(data => {
+    //                 songAcousticData = data
+    //                 acous += data.acousticness;
+    //                 danca += data.danceability;
+    //                 energ += data.energy
+    //                 instr += data.instrumentalness
+    //                 loudn += data.loudness
+    //                 speec += data.speechiness
+    //                 temp += data.tempo
+    //                 valen += data.valence
+    //             })
+    //         })
+    //         console.log("working")
+    //     }
+    //     acous /= 50.0
+    //     danca /= 50.0
+    //     energ /= 50.0
+    //     instr /= 50.0
+    //     loudn /= 50.0
+    //     speec /= 50.0
+    //     temp /= 50.0
+    //     valen /= 50.0
+    //
+    //     console.log(acous)
+    //     console.log(danca)
+    // })
+    // fetch("/api/data",{
+    //     method: "POST",
+    //     body: JSON.stringify()
+    // })
 }
