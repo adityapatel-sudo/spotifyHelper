@@ -220,8 +220,27 @@ function createPlaylist() {
                     console.log(data)
                     console.log(newPlaylistID)
                     showNotification("Playlist Created")
+                    addSongs()
                 })
         })
+    })
+}
+function addSongs(){
+    let addSongsURL = "https://api.spotify.com/v1/playlists/"+newPlaylistID+"/tracks"
+    let songsArray = []
+    for (let i = 0; i < topPlaylistData.total; i++) {
+        songsArray[i] = topPlaylistData.items[i].uri
+    }
+    let songsBody = {
+        uris:songsArray
+    }
+    console.log(songsBody)
+    fetch(addSongsURL, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(songsBody)
+    }).then(request => request.json()).then(res => {
+        console.log(res.snapshot_id)
     })
 }
 
