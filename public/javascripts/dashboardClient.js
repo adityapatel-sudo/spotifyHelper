@@ -21,7 +21,6 @@ const headers = new Headers({
     'Authorization': "Authorization: Bearer  "+accessToken,
 });
 
-
 fetch(userIDUrl,{
     method: 'GET',
     headers: headers
@@ -57,6 +56,25 @@ function toggleTemp() {
     playlistsContent.style.display = "none";
     songContent.style.display = "none";
     tempContent.style.display = "block";
+}
+function reload() {
+
+    var loaderWrapper = document.querySelector(".loader-wrapper");
+
+    if (loaderWrapper) {
+        loaderWrapper.style.transition = "opacity 0.5s";
+
+        // Delay the fade-out by 500 milliseconds (0.5 seconds)
+        setTimeout(function() {
+            loaderWrapper.style.opacity = 0;
+
+            // Hide the loader after the transition
+            loaderWrapper.addEventListener("transitionend", function() {
+                loaderWrapper.style.display = "none";
+            });
+        }, 500);
+    }
+
 }
 
 var searchResult
