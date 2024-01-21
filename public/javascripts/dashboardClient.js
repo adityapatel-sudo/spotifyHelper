@@ -33,8 +33,7 @@ fetch(userIDUrl,{
             userID = data.id
             const textWelcome = document.getElementById("text_welcome")
             textWelcome.innerText = "Welcome " + displayName
-
-
+            reload()
         })
     }).catch(error => {
         console.error('Error:', error);
