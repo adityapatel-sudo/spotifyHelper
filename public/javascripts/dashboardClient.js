@@ -282,3 +282,13 @@ function showNotification(message) {
         }, 500); // Adjust this timeout to match the transition duration
     }, 3000); // Adjust this timeout to control how long the notification is visible
 }
+
+
+async function getInfo() {
+    const completion = await ({
+
+        model: "gpt-3.5-turbo",
+    });
+
+    console.log(completion.choices[0]);
+}

@@ -29,7 +29,7 @@
         <div class="list-group">
             <a onclick="togglePlaylists()" class="list-group-item list-group-item-action" id="playlists">Create    Playlists</a>
             <a onclick="toggleSongs()" class="list-group-item list-group-item-action" id="song_data">Song data</a>
-            <a onclick="toggleTemp()" class="list-group-item list-group-item-action" id="temp">Item 3</a>
+            <a onclick="toggleTemp()" class="list-group-item list-group-item-action" id="temp">AI User Analysis</a>
         </div>
     </div>
 
@@ -81,8 +81,10 @@
         </div>
     </div>
     <div id="temp_content" style="display: none;" class="col-md-9">
-        <h3>temp</h3>
-        <p>Your content goes here.</p>
+        <h3>AI User Analysis</h3>
+        <p>Based on your music tastes, our AI Caden will analyze your music taste and give a brief description of you!</p>
+        <button id="generate_user_sumary" class="push_button" style="margin-top: 20px;">Generate User Summary</button>
+        <p id="caden_text"></p>
     </div>
    
 </div>
