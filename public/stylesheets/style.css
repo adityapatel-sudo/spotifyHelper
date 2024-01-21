@@ -215,3 +215,19 @@ a {
       height: 0%;
     }
   }
+
+#notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: #fff;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.hidden {
+  display: none;
+}

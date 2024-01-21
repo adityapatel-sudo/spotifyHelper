@@ -219,7 +219,26 @@ function createPlaylist() {
                     newPlaylistID = data.id
                     console.log(data)
                     console.log(newPlaylistID)
+                    showNotification("Playlist Created")
                 })
         })
     })
+}
+
+function showNotification(message) {
+    var notification = document.getElementById('notification');
+    var notiText = document.getElementById("notification_text")
+    notiText.innerText = message
+    // Show the notification
+    notification.style.opacity = 1;
+    notification.classList.remove('hidden');
+
+    // Set a timeout to fade out the notification after 3 seconds (adjust as needed)
+    setTimeout(function() {
+        notification.style.opacity = 0;
+        // Hide the notification after fading out
+        setTimeout(function() {
+            notification.classList.add('hidden');
+        }, 500); // Adjust this timeout to match the transition duration
+    }, 3000); // Adjust this timeout to control how long the notification is visible
 }
