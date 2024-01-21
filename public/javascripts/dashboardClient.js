@@ -170,6 +170,7 @@ function updateSong(song) {
  *
  */
 function createPlaylist() {
+    disableButton("create_playlist_top_songs")
     var select_playlist_length = document.getElementById("select_playlists")
     var length;
     switch (select_playlist_length.selectedIndex) {
@@ -219,12 +220,22 @@ function createPlaylist() {
                     newPlaylistID = data.id
                     console.log(data)
                     console.log(newPlaylistID)
-                    showNotification("Playlist Created")
                     addSongs()
                 })
         })
     })
 }
+
+function disableButton(elementID) {
+    let myButton = document.getElementById(elementID);
+    // Disable the button
+    myButton.disabled = true;
+    // Set a timeout to enable the button after 5 seconds (5000 milliseconds)
+    setTimeout(function() {
+        myButton.disabled = false;
+    }, 5000);
+}
+
 function addSongs(){
     let addSongsURL = "https://api.spotify.com/v1/playlists/"+newPlaylistID+"/tracks"
     let songsArray = []
@@ -240,7 +251,7 @@ function addSongs(){
         headers: headers,
         body: JSON.stringify(songsBody)
     }).then(request => request.json()).then(res => {
-        console.log(res.snapshot_id)
+        showNotification("Playlist Created")
     })
 }
 
