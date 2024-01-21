@@ -1,6 +1,7 @@
 //dashboardClient.js
 
 var userObj
+var userData
 
 console.log(window.location.hash)
 const accessToken = window.location.hash.split('#')[1].split('&')[0].split("access_token=")[1]
@@ -14,16 +15,16 @@ const headers = new Headers({
 fetch(userIDUrl,{
     method: 'GET',
     headers: headers
-})
-    .then(result => {
-        userObj = result.json().then(userData => {
-            console.log(userData)
-            console.log(userData.display_name)
-            const displayName = userData.display_name;
+}).then(result => {
+        userObj = result.json().then(data => {
+            userData = data
+            console.log(data)
+            console.log(data.display_name)
+            const displayName = data.display_name;
             const textWelcome = document.getElementById("text_welcome")
             textWelcome.innerText = "Welcome " + displayName
         })
-    })
-    .catch(error => {
+    }).catch(error => {
         console.error('Error:', error);
     })
+
