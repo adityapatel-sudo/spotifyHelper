@@ -5,7 +5,7 @@ body {
 }
 
 .outside-container {
-  padding: 50px;
+  padding: 35px;
 }
 a {
   color: #00B7FF;
@@ -64,12 +64,12 @@ a {
 
     /* Custom styling for the navigation bar */
     .navbar {
-      background-color: #1DB954; /* Set your desired background color */
+      background-color: #ffffff; /* Set your desired background color */
     }
 
     .navbar-brand,
     .nav-link {
-      color: #1DB954 !important; /* Set your desired text color */
+      color: #ffffff !important; /* Set your desired text color */
     }
 
     .navbar-brand:hover,
