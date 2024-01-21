@@ -20,15 +20,15 @@
     <!-- Sidebar -->
     <div class="col-md-3">
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action" id="playlists">Playlists</a>
-            <a href="#" class="list-group-item list-group-item-action" id="song_data">Song data</a>
-            <a href="#" class="list-group-item list-group-item-action" id="temp">Item 3</a>
+            <a href="#" onclick="togglePlaylists()" class="list-group-item list-group-item-action" id="playlists">Playlists</a>
+            <a href="#" onclick="toggleSongs()" class="list-group-item list-group-item-action" id="song_data">Song data</a>
+            <a href="#" onclick="toggleTemp()" class="list-group-item list-group-item-action" id="temp">Item 3</a>
         </div>
     </div>
 
     <!-- Main Content -->
-    <div class="col-md-9">
-        <h3>Main Content</h3>
+    <div class="col-md-9" style="display: block;" id="playlists_content">
+        <h3>Playlists</h3>
         <p>Your content goes here.</p>
         <div class="form-group">
             <label for="select_playlists">Select Playlists:</label>
@@ -37,12 +37,12 @@
             </select>
         </div>
     </div>
-    <div style="display: none;"class="col-md-9">
-        <h3>Main Content</h3>
+    <div id="song_content" style="display: none;"class="col-md-9">
+        <h3>Song Data </h3>
         <p>Your content goes here.</p>
     </div>
-    <div style="display: none;" class="col-md-9">
-        <h3>Main Content</h3>
+    <div id="temp_content" style="display: none;" class="col-md-9">
+        <h3>temp</h3>
         <p>Your content goes here.</p>
     </div>
    

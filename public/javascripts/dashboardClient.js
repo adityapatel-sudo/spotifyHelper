@@ -5,6 +5,10 @@ var userData
 var userID
 var simplifiedPlaylists
 
+const playlistsContent = document.getElementById("playlists_content")
+const songContent = document.getElementById("song_content")
+const tempContent = document.getElementById("temp_content")
+
 console.log(window.location.hash)
 const accessToken = window.location.hash.split('#')[1].split('&')[0].split("access_token=")[1]
 console.log(accessToken)
@@ -15,6 +19,7 @@ const playlistsUrl2 = "/playlists"
 const headers = new Headers({
     'Authorization': "Authorization: Bearer  "+accessToken,
 });
+
 
 fetch(userIDUrl,{
     method: 'GET',
@@ -45,6 +50,18 @@ fetch(userIDUrl,{
 
 const playlistsIDUrl = "https://api.spotify.com/v1/me"
 
-const playlists = getElementById('playlists');
-const song_data = getElementById('song_data');
-const temp = getElementById('temp');
+function togglePlaylists() {
+    playlistsContent.style.display = "block";
+    songContent.style.display = "none";
+    tempContent.style.display = "none";
+}
+function toggleSongs() {
+    playlistsContent.style.display = "none";
+    songContent.style.display = "block";
+    tempContent.style.display = "none";
+}
+function toggleTemp() {
+    playlistsContent.style.display = "none";
+    songContent.style.display = "none";
+    tempContent.style.display = "block";
+}
