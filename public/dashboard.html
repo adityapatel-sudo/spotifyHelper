@@ -55,31 +55,108 @@
         </div>
         </div>
     </div>
-    <div id="song_content" style="display: none;"class="col-md-9">
-        <h3>Song Data </h3>
+
+    <div class="col-md-9" style="display: none;border: 1px solid #c0bebe; padding: 10px; background-color: #fcfcfc;" id="song_content">
+        <h3 class="text-center" style="font-weight: bold; ">Song Data</h3>
         <p>
-            Enter a song to find out more about it!
+            Enter a song to find out more about it! Don't remember the name? Enter the lyrics instead.
         </p>
-        <div>
-            <input id="songInput" type="text" placeholder="Search...">
-            <button onclick="searchSong()">Search</button>
+        <div class="container mt-3">
+            <form onsubmit="searchSong(); return false;">
+                <div class="input-group mx-auto" style="max-width: 400px;">
+                    <input id="songInput" type="text" class="form-control" placeholder="Search...">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div id="song_info_container">
-            <img id="album_picture" src="your_image_url.jpg" alt="Album Cover">
-            <p id="song_name"></p>
-            <p id="album_name"></p>
+        <div id="song_info_container" class="d-flex flex-column align-items-center">
+            <p id="song_name" style="padding-top: 30px;"class="mb-2"></p>
+            <img id="album_picture" style="display: none;" src="your_image_url.jpg" alt="Album Cover" class="mb-2">
+            <p id="album_name" class="mb-2"></p>
+        
+        <div class="container mt-3">
+            <div class="row">
+                
         </div>
-        <div>
-            <p id="acousticness"></p>
-            <p id="dancability"></p>
-            <p id="energy"></p>
-            <p id="instrumentalness"></p>
-            <p id="loudness"></p>
-            <p id="speechiness"></p>
-            <p id="tempo"></p>
-            <p id="valence"></p>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="progress-container">
+                    <p class="progress-bar-label">Acousticness</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" id="acousticness" style="width: 50%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">50%</div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-6">
+                <div class="progress-container">
+                    <p class="progress-bar-label">Loudness</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" id="loudness"style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="progress-container">
+                    <p class="progress-bar-label">Danceability</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" id="dancability" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="progress-container">
+                    <p class="progress-bar-label">Speechiness</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" id="speechiness" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-md-6">
+                <div class="progress-container">
+                    <p class="progress-bar-label">Energy</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" id="energy" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="progress-container">
+                    <p class="progress-bar-label">Tempo</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" id="tempo" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="progress-container">
+                    <p class="progress-bar-label">Instrumentalness</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" id="instrumentalness" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="progress-container">
+                    <p class="progress-bar-label">Valence</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" id="valence" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+        <p style="padding-top: 50px;">Click <a href="https://developer.spotify.com/documentation/web-api/reference/get-audio-features" target="_blank">here</a> to see what each audio information means. Each value is normalized to 100%.</p>
     </div>
+
+
     <div id="temp_content" style="display: none;" class="col-md-9">
         <h3>AI User Analysis</h3>
         <p>Based on your music tastes, our AI Caden will analyze your music taste and give a brief description of you!</p>

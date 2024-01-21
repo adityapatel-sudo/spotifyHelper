@@ -140,6 +140,9 @@ function updateSong(song) {
                     }
                 }
                 songPicture.src = imagesArray[chosenIndex].url
+                songPicture.style.display = "block";
+                songPicture.style.margin = "auto";
+                songPicture.style.padding = "30px";
                 console.log(songData)
             })
     })
@@ -151,19 +154,61 @@ function updateSong(song) {
     }).then(response => {
         response.json().then(data => {
             songAcousticData = data
-            acousticness.innerText = "Acousticness: " + data.acousticness
-            dancability.innerText = "Danceability: " + data.danceability
-            energy.innerText = "Energy: "+ data.energy
+            acousticness.innerText =  data.acousticness
+            dancability.innerText =  data.danceability
+            energy.innerText =  data.energy
             instrumentalness.innerText = "Instrumentalness: "+ data.instrumentalness
-            loudness.innerText = "Loudness: "+ data.loudness
-            speechiness.innerText = "Speechiness: "+data.speechiness
-            tempo.innerText = "Tempo: " + data.tempo
+            loudness.innerText = data.loudness
+            speechiness.innerText = data.speechiness
+            tempo.innerText =  data.tempo
             valence.innerText = "Valence: " + data.valence
 
             console.log(songAcousticData)
+            updateProgressBar();
+
         })
     })
 }
+function updateProgressBar() {
+
+   
+
+    // Update the width of the progress bar
+    var acoustic = document.getElementById('acousticness');
+    var loud = document.getElementById('loudness');
+    var dance = document.getElementById('dancability');
+    var speech = document.getElementById("speechiness");
+    var energy = document.getElementById('energy');
+    var tempo = document.getElementById('tempo');
+    var instrument = document.getElementById('instrumentalness');
+    var valence = document.getElementById('valence');
+
+
+    acoustic.style.width = (songAcousticData.acousticness * 100).toFixed(2) + '%';
+    let decibals = Math.min(0, Math.max(-60, songAcousticData.loudness));
+    decibals = (((decibals + 60) / 60) * 100).toFixed(2);
+    loud.style.width =  decibals + '%';
+    dance.style.width = (songAcousticData.danceability * 100).toFixed(2) + '%';
+    speech.style.width = (songAcousticData.speechiness * 100).toFixed(2) + '%';
+    energy.style.width = (songAcousticData.energy * 100).toFixed(2) + '%';
+    tempo.style.width =  (songAcousticData.tempo / 2).toFixed(2) + '%';
+    instrument.style.width = (songAcousticData.instrumentalness * 100).toFixed(2) + '%';
+    valence.style.width = (songAcousticData.energy * 100).toFixed(2) + '%';
+
+    // Update the text inside the progress bar
+    document.getElementById('acousticness').textContent = songAcousticData.acousticness * 100 + '%';
+    document.getElementById('loudness').textContent = decibals + '%';
+    document.getElementById('dancability').textContent = songAcousticData.danceability * 100 + '%';
+    speech.textContent =  songAcousticData.speechiness * 100 + '%';
+    energy.textContent =  songAcousticData.energy * 100 + '%';
+
+    tempo.textContent = songAcousticData.tempo + "%";
+    instrument.textContent =  songAcousticData.instrumentalness * 100 + '%';
+
+
+}
+
+
 
 /**
  * gets users top songs in timeframe and creates playlist with the songs
