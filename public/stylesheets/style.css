@@ -239,8 +239,9 @@ a {
 
 @media (max-width: 767px) {
   .progress-container {
-      max-width: 100%;
+    max-width: 100%;
   }
+}
 #notification {
   position: fixed;
   top: 20px;
