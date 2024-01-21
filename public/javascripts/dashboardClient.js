@@ -96,7 +96,7 @@ let valence = document.getElementById("valence")
 
 let topPlaylistData
 let newPlaylistID
-
+let newPlaylistURL
 function searchSong() {
     console.log("in search song")
     var songInput = document.getElementById("songInput");
@@ -218,11 +218,20 @@ function createPlaylist() {
                 .then(response => response.json())
                 .then(data => {
                     newPlaylistID = data.id
+                    newPlaylistURL = data.external_urls.spotify
                     console.log(data)
                     console.log(newPlaylistID)
                     addSongs()
                 })
         })
+    })
+}
+
+function enablePlaylistButton() {
+    let playlistButton = document.getElementById("open_playlist")
+    playlistButton.style.display = "inline-block"
+    playlistButton.addEventListener("click",function () {
+        window.open(newPlaylistURL)
     })
 }
 
@@ -252,6 +261,7 @@ function addSongs(){
         body: JSON.stringify(songsBody)
     }).then(request => request.json()).then(res => {
         showNotification("Playlist Created")
+        enablePlaylistButton()
     })
 }
 
