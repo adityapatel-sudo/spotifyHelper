@@ -94,6 +94,9 @@ let speechiness = document.getElementById("speechiness")
 let tempo = document.getElementById("tempo")
 let valence = document.getElementById("valence")
 
+let topPlaylistData
+let newPlaylistID
+let newPlaylistURL
 function searchSong() {
     console.log("in search song")
     var songInput = document.getElementById("songInput");
@@ -207,3 +210,130 @@ function updateProgressBar() {
 
 
 
+/**
+ * gets users top songs in timeframe and creates playlist with the songs
+ *
+ */
+function createPlaylist() {
+    disableButton("create_playlist_top_songs")
+    var select_playlist_length = document.getElementById("select_playlists")
+    var length;
+    switch (select_playlist_length.selectedIndex) {
+        case 0:
+           length = "short_term"
+           break;
+        case 1:
+            length = "medium_term"
+            break;
+        case 2:
+            length = "long_term"
+            break
+    }
+    console.log(length)
+    let type = "tracks"
+    var getTopTracksURL = 'https://api.spotify.com/v1/me/top/tracks';
+    getTopTracksURL += '?time_range=' + encodeURIComponent(length);
+    getTopTracksURL += '&limit=50';
+    console.log(getTopTracksURL)
+
+    fetch(getTopTracksURL, {
+        method:"GET",
+        headers: headers
+    }).then(response => {
+        response.json().then(data => {
+            topPlaylistData = data
+            console.log(topPlaylistData)
+            var createPlaylistURL = "https://api.spotify.com/v1/users/"+userID+"/playlists"
+            var today = new Date()
+            var day = today.getDate();
+            var month = today.getMonth() + 1; // Months are zero-based, so add 1
+            var year = today.getFullYear() % 100; // Get the last two digits of the year
+            day = (day < 10) ? '0' + day : day;
+            month = (month < 10) ? '0' + month : month;
+            var formattedDate = month + '/' + day + '/' + year;
+            var playlistBody = {
+                name: "Top Songs "+formattedDate,
+                description: "Playlist created by MyCadence. Includes Top songs from "+length
+            }
+            fetch(createPlaylistURL, {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(playlistBody)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    newPlaylistID = data.id
+                    newPlaylistURL = data.external_urls.spotify
+                    console.log(data)
+                    console.log(newPlaylistID)
+                    addSongs()
+                })
+        })
+    })
+}
+
+function enablePlaylistButton() {
+    let playlistButton = document.getElementById("open_playlist")
+    playlistButton.style.display = "inline-block"
+    playlistButton.addEventListener("click",function () {
+        window.open(newPlaylistURL)
+    })
+}
+
+function disableButton(elementID) {
+    let myButton = document.getElementById(elementID);
+    // Disable the button
+    myButton.disabled = true;
+    // Set a timeout to enable the button after 5 seconds (5000 milliseconds)
+    setTimeout(function() {
+        myButton.disabled = false;
+    }, 5000);
+}
+
+function addSongs(){
+    let addSongsURL = "https://api.spotify.com/v1/playlists/"+newPlaylistID+"/tracks"
+    let songsArray = []
+    for (let i = 0; i < topPlaylistData.total; i++) {
+        songsArray[i] = topPlaylistData.items[i].uri
+    }
+    let songsBody = {
+        uris:songsArray
+    }
+    console.log(songsBody)
+    fetch(addSongsURL, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(songsBody)
+    }).then(request => request.json()).then(res => {
+        showNotification("Playlist Created")
+        enablePlaylistButton()
+    })
+}
+
+function showNotification(message) {
+    var notification = document.getElementById('notification');
+    var notiText = document.getElementById("notification_text")
+    notiText.innerText = message
+    // Show the notification
+    notification.style.opacity = 1;
+    notification.classList.remove('hidden');
+
+    // Set a timeout to fade out the notification after 3 seconds (adjust as needed)
+    setTimeout(function() {
+        notification.style.opacity = 0;
+        // Hide the notification after fading out
+        setTimeout(function() {
+            notification.classList.add('hidden');
+        }, 500); // Adjust this timeout to match the transition duration
+    }, 3000); // Adjust this timeout to control how long the notification is visible
+}
+
+
+async function getInfo() {
+    const completion = await ({
+
+        model: "gpt-3.5-turbo",
+    });
+
+    console.log(completion.choices[0]);
+}

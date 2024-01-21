@@ -29,7 +29,7 @@
         <div class="list-group">
             <a onclick="togglePlaylists()" class="list-group-item list-group-item-action" id="playlists">Create    Playlists</a>
             <a onclick="toggleSongs()" class="list-group-item list-group-item-action" id="song_data">Song data</a>
-            <a onclick="toggleTemp()" class="list-group-item list-group-item-action" id="temp">Item 3</a>
+            <a onclick="toggleTemp()" class="list-group-item list-group-item-action" id="temp">AI User Analysis</a>
         </div>
     </div>
 
@@ -44,13 +44,15 @@
         <div class="form-group d-flex justify-content-center">
             <label for="select_playlists" class="mr-2" style="margin-right: 20px; padding-top: 5px;">Select Timeframe:</label>
             <select class="form-control" id="select_playlists" style="max-width: 200px;">
-                <option value="option1">4 Weeks</option>
-                <option value="option2">6 months</option>
-                <option value="option3">Lifetime</option>
+                <option value="short_term">4 Weeks</option>
+                <option value="medium_term">6 months</option>
+                <option value="long_term">Lifetime</option>
             </select>
         </div>
-        
-        <button id="sign_in_button" style="margin-top: 20px;">Create Playlist</button>
+        <div>
+        <button onclick="createPlaylist()" id="create_playlist_top_songs" class="push_button" style="margin-top: 20px;">Create Playlist</button>
+        <button id="open_playlist" class="push_button" style="margin-top: 20px;display: none;background-color: gray">Open Playlist</button>
+        </div>
         </div>
     </div>
 
@@ -156,12 +158,18 @@
 
 
     <div id="temp_content" style="display: none;" class="col-md-9">
-        <h3>temp</h3>
-        <p>Your content goes here.</p>
+        <h3>AI User Analysis</h3>
+        <p>Based on your music tastes, our AI Caden will analyze your music taste and give a brief description of you!</p>
+        <button id="generate_user_sumary" class="push_button" style="margin-top: 20px;">Generate User Summary</button>
+        <p id="caden_text"></p>
     </div>
    
 </div>
 </div>
+
+    <div id="notification" class="hidden">
+        <p id="notification_text">This is your notification!</p>
+    </div>
  
     <script src="/javascripts/dashboardClient.js"></script>
 </body>

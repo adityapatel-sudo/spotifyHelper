@@ -20,7 +20,7 @@ localStorage.setItem(stateKey, state);
 var scope = 'user-read-private user-read-email ' +
     'playlist-read-private playlist-read-collaborative ' +
     'playlist-modify-private playlist-modify-public ' +
-    'user-library-modify user-library-read';
+    'user-library-modify user-library-read user-top-read';
 
 var url = 'https://accounts.spotify.com/authorize';
 url += '?response_type=token';
