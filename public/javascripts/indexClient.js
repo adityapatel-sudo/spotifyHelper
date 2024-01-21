@@ -31,7 +31,5 @@ url += '&state=' + encodeURIComponent(state);
 
 const sign_in_button = document.getElementById('sign_in_button');
 sign_in_button.addEventListener('click',function (e) {
-    console.log("button pressed")
-    console.log(url)
     window.open(url, '_blank');
 })
