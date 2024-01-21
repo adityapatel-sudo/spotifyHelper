@@ -44,3 +44,7 @@ fetch(userIDUrl,{
     })
 
 const playlistsIDUrl = "https://api.spotify.com/v1/me"
+
+const playlists = getElementById('playlists');
+const song_data = getElementById('song_data');
+const temp = getElementById('temp');
