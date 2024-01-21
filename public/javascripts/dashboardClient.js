@@ -95,6 +95,7 @@ let tempo = document.getElementById("tempo")
 let valence = document.getElementById("valence")
 
 let topPlaylistData
+let newPlaylistID
 
 function searchSong() {
     console.log("in search song")
@@ -184,18 +185,41 @@ function createPlaylist() {
     }
     console.log(length)
     let type = "tracks"
-    var createPlaylistURL = 'https://api.spotify.com/v1/me/top/tracks';
-    createPlaylistURL += '?time_range=' + encodeURIComponent(length);
-    createPlaylistURL += '&limit=50';
-    console.log(createPlaylistURL)
+    var getTopTracksURL = 'https://api.spotify.com/v1/me/top/tracks';
+    getTopTracksURL += '?time_range=' + encodeURIComponent(length);
+    getTopTracksURL += '&limit=50';
+    console.log(getTopTracksURL)
 
-    fetch(createPlaylistURL, {
+    fetch(getTopTracksURL, {
         method:"GET",
         headers: headers
     }).then(response => {
         response.json().then(data => {
             topPlaylistData = data
             console.log(topPlaylistData)
+            var createPlaylistURL = "https://api.spotify.com/v1/users/"+userID+"/playlists"
+            var today = new Date()
+            var day = today.getDate();
+            var month = today.getMonth() + 1; // Months are zero-based, so add 1
+            var year = today.getFullYear() % 100; // Get the last two digits of the year
+            day = (day < 10) ? '0' + day : day;
+            month = (month < 10) ? '0' + month : month;
+            var formattedDate = month + '/' + day + '/' + year;
+            var playlistBody = {
+                name: "Top Songs "+formattedDate,
+                description: "Playlist created by MyCadence. Includes Top songs from "+length
+            }
+            fetch(createPlaylistURL, {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(playlistBody)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    newPlaylistID = data.id
+                    console.log(data)
+                    console.log(newPlaylistID)
+                })
         })
     })
 }
