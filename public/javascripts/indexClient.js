@@ -2,8 +2,8 @@
 
 
 var client_id = '3b69f31f92be469e9dae0c7ab96856c9';
-var redirect_uri = 'https://www.mycadences.com/authorizeSpotify'
-//var redirect_uri = 'http://localhost:3000/authorizeSpotify';
+//var redirect_uri = 'https://www.mycadences.com/authorizeSpotify'
+var redirect_uri = 'http://localhost:3000/authorizeSpotify';
 
 function generateRandomString(length) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
